@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="cmd_vel_topic_in"   default="/cmd_vel"/>
+    <arg name="cmd_vel_topic_out"  default="/mc/cmd_vel"/>
+
+    <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+
+    <node name="motor_controller" pkg="motor_controller" type="motor_controller" output="screen">
+        <remap from="/cmd_vel"   to="$(arg cmd_vel_topic_in)"/>
+        <remap from="/cmd_vel_out"  to="$(arg cmd_vel_topic_out)"/>
+    </node>
+</launch>
